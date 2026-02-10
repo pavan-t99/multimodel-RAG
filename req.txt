@@ -1,0 +1,11 @@
+ipykernel
+langchain==0.3.13
+langchain-community==0.3.13
+langchain-core==0.3.28
+langchain-huggingface==0.1.2
+langchain-text-splitters==0.3.4
+pypdf
+faiss-cpu==1.9.0
+camelot-py
+pdf2image
+pymupdf
