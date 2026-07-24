@@ -1,0 +1,23 @@
+ipykernel
+langchain==0.3.13
+langchain-community==0.3.13
+langchain-core==0.3.28
+langchain-huggingface==0.1.2
+langchain-text-splitters==0.3.4
+pypdf
+faiss-cpu
+langchain-google-genai
+langchain_groq
+flask
+google
+google-genai
+sentencepiece
+streamlit
+google-generativeai
+python-dotenv
+
+# --- Multilingual translation stack (IndicTrans2, Telugu/Hindi/Nepali) ---
+torch
+transformers==4.46.3
+IndicTransToolkit
+nltk
