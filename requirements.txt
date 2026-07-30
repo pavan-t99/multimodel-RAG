@@ -24,4 +24,4 @@ nltk
 streamlit>=1.38.0
 faster-whisper
 soundfile
- 
+pydub

@@ -62,7 +62,7 @@ if audio_value is not None:
 # e.g. Codespaces browser context blocking mic permission) ---
 st.write("Or upload a voice recording of your question:")
 uploaded_audio = st.file_uploader(
-    "Upload audio", type=["wav", "flac", "ogg"], label_visibility="collapsed"
+    "Upload audio", type=["wav", "flac", "ogg","opus", "mp3", "m4a", "aac"], label_visibility="collapsed"
 )
 if uploaded_audio is not None:
     raw_bytes = uploaded_audio.getvalue()
