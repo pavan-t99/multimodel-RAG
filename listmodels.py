@@ -12,6 +12,3 @@ def list_models(api_key):
     for model in models:
         print(model.name)
 
-# Example usage
-API_KEY = "AIzaSyDtmyEUIp280CccIZy4aSV4X-GY7NNiUIo"
-list_models(API_KEY)
