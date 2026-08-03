@@ -69,6 +69,7 @@ def do_rag_generation(search_request: Request,history) -> Response:
     - Only use the provided context 
     - If the answer is not in the context, say "I don't know"
     - If a website link appears in the answer, format it as a clickable hyperlink using proper HTML or Markdown with target="_blank" rel="noopener noreferrer" so that users can opens in new tab the website when they click it.
+    - Always format links as <a href="URL" target="_blank" rel="noopener noreferrer">LINK_TEXT</a>. Never use Markdown link syntax like [text](url).
         """
     final_prompt = system_message + "\n\n" + message.to_messages()[0].content
 

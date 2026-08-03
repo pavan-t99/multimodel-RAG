@@ -55,8 +55,12 @@ _ip = IndicProcessor(inference=True)
 
 # Protects URLs and the <a href=...>...</a> hyperlinks the system prompt asks
 # the LLM to produce, so translation doesn't mangle markup/links.
-_LINK_PATTERN = re.compile(r"<a[^>]*>.*?</a>|https?://\S+")
-
+_LINK_PATTERN = re.compile(
+    r"<a[^>]*>.*?</a>"          # HTML anchors
+    r"|\[[^\]]*\]\([^\)]*\)"    # Markdown links: [text](url "title")
+    r"|https?://\S+",           # bare URLs
+    re.DOTALL,
+)
 
 @lru_cache(maxsize=2)
 def _load(model_name: str):
@@ -94,9 +98,12 @@ def _protect_links(text: str):
     return _LINK_PATTERN.sub(_stash, text), links
 
 
-def _restore_links(text: str, links: list):
+def _restore_links(text: str, links: list) -> str:
     for i, link in enumerate(links):
-        text = text.replace(f"@@LINK{i}@@", link).replace(f"@@ LINK{i} @@", link)
+        # IndicTrans2's tokenizer often reshapes the placeholder during
+        # translation (e.g. "@@LINK0@@" -> "@@LINK0 @@"), so match loosely.
+        pattern = re.compile(r"@+\s*LINK\s*" + str(i) + r"\s*@+", re.IGNORECASE)
+        text = pattern.sub(link, text)
     return text
 
 
